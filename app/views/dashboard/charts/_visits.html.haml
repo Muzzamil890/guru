@@ -1,0 +1,9 @@
+.col-lg-12
+  .panel
+    .panel-heading
+      = link_to 'Recent Visits', reports_attendance_path
+    .panel-body
+      - data = current_studio.visits.recent.group_by{|v| v.visit_date}
+      -data.each do|k,v|
+        -data[k] = v.count
+      = line_chart data

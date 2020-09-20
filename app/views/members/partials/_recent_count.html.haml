@@ -1,0 +1,4 @@
+%li
+  = link_to reports_members_recent_index_path do
+    %i.fa.fa-user
+    = pluralize(current_studio.members.recent.count, 'Recent Member')

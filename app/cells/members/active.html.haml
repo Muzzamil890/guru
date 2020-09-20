@@ -1,0 +1,4 @@
+%li
+  = link_to active_members_path do
+    %i.fa.fa-eye
+    = pluralize(current_studio.members.active.count, 'Active Member')

@@ -1,0 +1,8 @@
+.col-lg-3
+  .panel
+    .symbol.red
+      %i.fa.fa-warning
+    .value
+      - past_due_count = current_studio.accounts.past_due.count
+      %h1= past_due_count
+      %p= link_to 'Past Due Accounts'.pluralize(past_due_count), reports_accounts_path(type: :past_due)

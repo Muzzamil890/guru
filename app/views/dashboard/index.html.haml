@@ -1,0 +1,55 @@
+
+.row
+  .state-overview
+    = render 'dashboard/partials/past_due'
+    = render 'dashboard/partials/due'
+    = render 'dashboard/partials/up_to_date'
+    = render 'dashboard/partials/monthly_revenue'
+    -# = cell(:account, :past_due, current_studio)
+    -# = cell(:accounts, :due, current_studio)
+    -# = cell(:accounts, :up_to_date, current_studio)
+    -# = cell(:payments, :monthly_revenue, current_studio)
+.row
+  = render 'dashboard/charts/visits'
+.row
+  .col-lg-4
+    .panel
+      .panel-heading
+        = link_to "#{@today} Classes", classes_path
+      .panel-body
+        - unless @klasses.empty?
+          %table.table.table-hover
+            %thead
+              %tr
+                %th.col-lg-9 Name
+                %th Time
+            %tbody
+              - @klasses.each do |klass|
+                %tr
+                  %td= link_to klass.name, edit_class_path(klass)
+                  %td= l(klass.class_time, format: :time)
+        - else
+          = link_to 'New Class', new_class_path, class: 'btn btn-primary'
+  .col-lg-4
+    .panel
+      .panel-heading
+        = link_to 'Top 10 Levels', levels_path
+      .panel-body
+        %table.table.table-hover
+          %thead
+            %tr
+              %th.col-lg-6 Name
+              %th Color
+              %th Members
+          %tbody
+            - @levels.each do |level|
+              %tr
+                %td= link_to level.name, edit_level_path(level)
+                %td
+                  %span.label{style: "background: #{level.color}; padding: 5px 30px"}
+                    &nbsp;
+                %td= level.members_count
+
+  -# = cell(:classes, :today, current_studio)
+  -# = cell(:levels, :top, current_studio)
+  = render 'dashboard/charts/sources'

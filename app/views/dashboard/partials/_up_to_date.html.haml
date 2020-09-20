@@ -1,0 +1,8 @@
+.col-lg-3
+  .panel
+    .symbol.blue
+      %i.fa.fa-check
+    .value
+      - up_count = current_studio.accounts.up_to_date.count
+      %h1= up_count
+      %p= link_to 'Up To Date Accounts'.pluralize(up_count), reports_accounts_path(type: :up_to_date)
