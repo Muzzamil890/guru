@@ -17,7 +17,10 @@ class ApplicationController < ActionController::Base
   end
 
   def current_studio
-    current_user.studio
+    current_user.try(:studio)
+    if current_user.try(:studio).blank? && current_admin_user.present?
+      Studio.last
+    end
   end
   helper_method :current_studio
 
